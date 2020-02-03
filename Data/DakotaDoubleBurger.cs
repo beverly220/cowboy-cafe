@@ -6,7 +6,7 @@ namespace CowboyCafe.Data {
     /// <summary>
     /// Creates a Dakota Double Burger entree object
     /// </summary>
-    class DakotaDoubleBurger {
+    public class DakotaDoubleBurger {
 
 		/// <summary>
 		/// The price of the entree

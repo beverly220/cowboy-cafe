@@ -6,7 +6,7 @@ namespace CowboyCafe.Data {
     /// <summary>
     /// Creates a Pecos Pulled Pork entree object
     /// </summary>
-    class PecosPulledPork {
+    public class PecosPulledPork {
 
 		/// <summary>
 		/// The price of the entree
