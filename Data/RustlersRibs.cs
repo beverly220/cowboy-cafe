@@ -6,12 +6,12 @@ namespace CowboyCafe.Data {
     /// <summary>
     /// Creates a Rustler's Ribs entree object
     /// </summary>
-    public class RustlersRibs {
+    public class RustlersRibs : Entree {
 
 		/// <summary>
 		/// The price of the entree
 		/// </summary>
-		public double Price {
+		public override double Price {
 			get {
 				return 7.50;
 			}
@@ -20,7 +20,7 @@ namespace CowboyCafe.Data {
 		/// <summary>
 		/// The amount of calories the entree is
 		/// </summary>
-		public uint Calories {
+		public override uint Calories {
 			get {
 				return 894;
 			}
@@ -29,7 +29,7 @@ namespace CowboyCafe.Data {
 		/// <summary>
 		/// Any changes needing to be made from the original recipe
 		/// </summary>
-		public List<string> SpecialInstructions {
+		public override List<string> SpecialInstructions {
 			get {
 				List<string> instructions = new List<string>();
 				return instructions;
