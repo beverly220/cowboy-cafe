@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace CowboyCafe.Data {
+
     /// <summary>
     /// Creates a Dakota Double Burger entree object
     /// </summary>

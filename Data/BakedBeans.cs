@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace CowboyCafe.Data {
+
     /// <summary>
     /// Creates a Baked Beans object to represent the side
     /// </summary>
     public class BakedBeans : Side {
+
         /// <summary>
         /// Returns the correct calories based on the
         /// size of the selected side

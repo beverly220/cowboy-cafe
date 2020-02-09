@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace CowboyCafe.Data {
+
     /// <summary>
     /// Creates a Pecos Pulled Pork entree object
     /// </summary>
@@ -35,7 +36,6 @@ namespace CowboyCafe.Data {
 		/// If the entree should be served with bread
 		/// </summary>
 		public bool Bread { get; set; } = true;
-
 
 		/// <summary>
 		/// Any changes needing to be made from the original recipe
