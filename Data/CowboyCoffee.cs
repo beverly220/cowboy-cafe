@@ -13,7 +13,12 @@ namespace CowboyCafe.Data {
         /// <summary>
         /// If served with ice
         /// </summary>
-        public bool Ice { get; set; } = false;
+        public override bool Ice { get; set; } = false;
+
+        /// <summary>
+        /// If the coffee is decaf
+        /// </summary>
+        public bool Decaf { get; set; } = false;
 
         /// <summary>
         /// If room for cream is left
@@ -65,8 +70,8 @@ namespace CowboyCafe.Data {
         public override List<string> SpecialInstructions {
             get {
                 var instructions = new List<string>();
-                if (Ice) instructions.Add("add ice");
-                if (RoomForCream) instructions.Add("room for cream");
+                if (Ice) instructions.Add("Add Ice");
+                if (RoomForCream) instructions.Add("Room for Cream");
                 return instructions;
             }
         }

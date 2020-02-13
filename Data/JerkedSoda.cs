@@ -13,12 +13,12 @@ namespace CowboyCafe.Data {
         /// <summary>
         /// Stores the flavor of the drink
         /// </summary>
-        SodaFlavor Flavor { get; set; }
+        public SodaFlavor Flavor { get; set; }
 
         /// <summary>
         /// If served with ice
         /// </summary>
-        public bool Ice { get; set; } = true;
+        public override bool Ice { get; set; } = true;
 
         /// <summary>
         /// Returns the correct calories based on the
@@ -65,7 +65,7 @@ namespace CowboyCafe.Data {
         public override List<string> SpecialInstructions {
             get {
                 var instructions = new List<string>();
-                if (!Ice) instructions.Add("hold ice");
+                if (!Ice) instructions.Add("Hold Ice");
                 return instructions;
             }
         }

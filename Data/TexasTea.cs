@@ -13,7 +13,7 @@ namespace CowboyCafe.Data {
         /// <summary>
         /// If served with ice
         /// </summary>
-        public bool Ice { get; set; } = true;
+        public override bool Ice { get; set; } = true;
 
         /// <summary>
         /// If served with a lemon
@@ -31,15 +31,29 @@ namespace CowboyCafe.Data {
         /// </summary>
         public override uint Calories {
             get {
-                switch (Size) {
-                    case Size.Small:
-                        return 10;
-                    case Size.Medium:
-                        return 22;
-                    case Size.Large:
-                        return 36;
-                    default:
-                        throw new NotImplementedException();
+                if (!Sweet) {
+                    switch (Size) {
+                        case Size.Small:
+                            return 5;
+                        case Size.Medium:
+                            return 11;
+                        case Size.Large:
+                            return 18;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                }
+                else {
+                    switch (Size) {
+                        case Size.Small:
+                            return 10;
+                        case Size.Medium:
+                            return 22;
+                        case Size.Large:
+                            return 36;
+                        default:
+                            throw new NotImplementedException();
+                    }
                 }
             }
         }
@@ -70,9 +84,9 @@ namespace CowboyCafe.Data {
         public override List<string> SpecialInstructions {
             get {
                 var instructions = new List<string>();
-                if (!Ice) instructions.Add("hold ice");
-                if (!Sweet) instructions.Add("unsweet tea");
-                if (Lemon) instructions.Add("add lemon");
+                if (!Ice) instructions.Add("Hold Ice");
+                if (!Sweet) instructions.Add("Unsweet Tea");
+                if (Lemon) instructions.Add("Add Lemon");
                 return instructions;
             }
         }
