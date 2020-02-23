@@ -25,7 +25,7 @@ namespace PointOfSale {
             InitializeComponent();
             AddAngryChicken.Click += OnAddAngryChickenClicked;
             AddBakedBeans.Click += OnAddBakedBeansClicked;
-            AddChiliCheeseFries.Click += OnAddChiliCheeseFriesClicked
+            AddChiliCheeseFries.Click += OnAddChiliCheeseFriesClicked;
             AddCornDodgers.Click += OnAddCornDodgersClicked;
             AddCowboyCoffee.Click += OnAddCowboyCoffeeClicked;
             AddCowpokeChili.Click += OnAddCowpokeChiliClicked;
