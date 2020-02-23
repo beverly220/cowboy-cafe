@@ -52,7 +52,16 @@ namespace CowboyCafe.Data {
         /// </summary>
         /// <returns>The name of the side</returns>
         public override string ToString() {
-            return "Pan de Campo";
+            switch (Size) {
+                case Size.Small:
+                    return "Small Pan de Campo";
+                case Size.Medium:
+                    return "Medium Pan de Campo";
+                case Size.Large:
+                    return "Large Pan de Campo";
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
     }

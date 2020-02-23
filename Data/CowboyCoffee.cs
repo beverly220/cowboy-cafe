@@ -81,7 +81,25 @@ namespace CowboyCafe.Data {
         /// </summary>
         /// <returns>The name of the drink</returns>
         public override string ToString() {
-            return "Cowboy Coffee";
+            switch (Size) {
+                case Size.Small:
+                    if(Decaf) {
+                        return "Small Decaf Cowboy Coffee";
+                    }
+                    return "Small Cowboy Coffee";
+                case Size.Medium:
+                    if (Decaf) {
+                        return "Medium Decaf Cowboy Coffee";
+                    }
+                    return "Medium Cowboy Coffee";
+                case Size.Large:
+                    if (Decaf) {
+                        return "Large Decaf Cowboy Coffee";
+                    }
+                    return "Large Cowboy Coffee";
+                default:
+                    throw new NotImplementedException();   
+            }
         }
 
     }

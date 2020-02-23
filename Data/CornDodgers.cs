@@ -52,7 +52,16 @@ namespace CowboyCafe.Data {
         /// </summary>
         /// <returns>The name of the side</returns>
         public override string ToString() {
-            return "Corn Dodgers";
+            switch (Size) {
+                case Size.Small:
+                    return "Small Corn Dodgers";
+                case Size.Medium:
+                    return "Medium Corn Dodgers";
+                case Size.Large:
+                    return "Large Corn Dodgers";
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
     }
