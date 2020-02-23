@@ -18,6 +18,11 @@ namespace PointOfSale {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
+        /// <summary>
+        /// Initializes the Main Window so the OrderControl
+        /// works from it
+        /// </summary>
         public MainWindow() {
             InitializeComponent();
         }

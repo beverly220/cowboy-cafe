@@ -25,7 +25,7 @@ namespace PointOfSale {
             InitializeComponent();
             AddAngryChicken.Click += OnAddAngryChickenClicked;
             AddBakedBeans.Click += OnAddBakedBeansClicked;
-            AddChiliCheeseFries.Click += OnAddChiliCheeseFriesClicked;
+            AddChiliCheeseFries.Click += OnAddChiliCheeseFriesClicked
             AddCornDodgers.Click += OnAddCornDodgersClicked;
             AddCowboyCoffee.Click += OnAddCowboyCoffeeClicked;
             AddCowpokeChili.Click += OnAddCowpokeChiliClicked;
@@ -45,7 +45,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddAngryChickenClicked(object sender, RoutedEventArgs e) {
+        private void OnAddAngryChickenClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new AngryChicken());
         }
 
@@ -54,7 +54,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddBakedBeansClicked(object sender, RoutedEventArgs e) {
+        private void OnAddBakedBeansClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new BakedBeans());
         }
 
@@ -63,7 +63,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddChiliCheeseFriesClicked(object sender, RoutedEventArgs e) {
+        private void OnAddChiliCheeseFriesClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new ChiliCheeseFries());
         }
 
@@ -72,7 +72,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddCornDodgersClicked(object sender, RoutedEventArgs e) {
+        private void OnAddCornDodgersClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new CornDodgers());
         }
 
@@ -81,7 +81,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddCowboyCoffeeClicked(object sender, RoutedEventArgs e) {
+        private void OnAddCowboyCoffeeClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new CowboyCoffee());
         }
 
@@ -90,7 +90,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddCowpokeChiliClicked(object sender, RoutedEventArgs e) {
+        private void OnAddCowpokeChiliClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new CowpokeChili());
         }
 
@@ -99,7 +99,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddDakotaDoubleBurgerClicked(object sender, RoutedEventArgs e) {
+        private void OnAddDakotaDoubleBurgerClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new DakotaDoubleBurger());
         }
 
@@ -108,7 +108,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddJerkedSodaClicked(object sender, RoutedEventArgs e) {
+        private void OnAddJerkedSodaClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new JerkedSoda());
         }
 
@@ -117,7 +117,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddPanDeCampoClicked(object sender, RoutedEventArgs e) {
+        private void OnAddPanDeCampoClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new PanDeCampo());
         }
 
@@ -126,7 +126,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddPecosPulledPorkClicked(object sender, RoutedEventArgs e) {
+        private void OnAddPecosPulledPorkClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new PecosPulledPork());
         }
 
@@ -135,7 +135,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddRustlersRibsClicked(object sender, RoutedEventArgs e) {
+        private void OnAddRustlersRibsClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new RustlersRibs());
         }
 
@@ -144,7 +144,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddTexasTeaClicked(object sender, RoutedEventArgs e) {
+        private void OnAddTexasTeaClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new TexasTea());
         }
 
@@ -153,7 +153,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddTexasTripleBurgerClicked(object sender, RoutedEventArgs e) {
+        private void OnAddTexasTripleBurgerClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new TexasTripleBurger());
         }
 
@@ -162,7 +162,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddTrailburgerClicked(object sender, RoutedEventArgs e) {
+        private void OnAddTrailburgerClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new TrailBurger());
         }
 
@@ -171,7 +171,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnAddWaterClicked(object sender, RoutedEventArgs e) {
+        private void OnAddWaterClicked(object sender, RoutedEventArgs e) {
             CurrentOrder.Items.Add(new Water());
         }
 
