@@ -53,10 +53,8 @@ namespace CowboyCafe.Data
         /// <summary>
         /// Special instructions for the preparation of the chili
         /// </summary>
-        public override List<string> SpecialInstructions
-        {
-            get
-            {
+        public override List<string> SpecialInstructions {
+            get {
                 var instructions = new List<string>();
 
                 if (!Cheese) instructions.Add("hold cheese");
@@ -66,6 +64,14 @@ namespace CowboyCafe.Data
 
                 return instructions;
             }
+        }
+
+        /// <summary>
+        /// Makes the name of the entree more user friendly
+        /// </summary>
+        /// <returns>The name of the entree</returns>
+        public override string ToString() {
+            return "Cowpoke Chili";
         }
     }
 }

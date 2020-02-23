@@ -70,5 +70,13 @@ namespace CowboyCafe.Data {
             }
         }
 
+        /// <summary>
+        /// Makes the name of the drink more user friendly
+        /// </summary>
+        /// <returns>The name of the drink</returns>
+        public override string ToString() {
+            return "Jerked Soda";
+        }
+
     }
 }

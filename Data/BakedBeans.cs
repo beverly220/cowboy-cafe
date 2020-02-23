@@ -47,7 +47,13 @@ namespace CowboyCafe.Data {
             }
         }
 
-
+        /// <summary>
+        /// Makes the name of the side more user friendly
+        /// </summary>
+        /// <returns>The name of the side</returns>
+        public override string ToString() {
+            return "Baked Beans";
+        }
 
     }
 }
