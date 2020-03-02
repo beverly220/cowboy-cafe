@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using CowboyCafe.Data;
 
 namespace PointOfSale {
+
     /// <summary>
     /// Interaction logic for OrderControl.xaml
     /// </summary>
@@ -46,7 +47,9 @@ namespace PointOfSale {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnAddAngryChickenClicked(object sender, RoutedEventArgs e) {
-            CurrentOrder.Items.Add(new AngryChicken());
+            if (DataContext is Order data) {
+                data.Add(new AngryChicken());
+            }
         }
 
         /// <summary>

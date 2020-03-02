@@ -14,13 +14,13 @@ namespace CowboyCafe.DataTests.UnitTests {
         /// <summary>
         /// Stores a mock price for an item
         /// </summary>
-        public double Price { get; set; }
+        public override double Price { get; set; }
 
         /// <summary>
         /// Keeps track of special instructions
         /// for mock items
         /// </summary>
-        public List<string> SpecialInstructions { get; set; }
+        public override List<string> SpecialInstructions { get; set; }
     }
 
     /// <summary>

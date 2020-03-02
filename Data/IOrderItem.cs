@@ -7,11 +7,11 @@ namespace CowboyCafe.Data {
         /// <summary>
         /// The price of an ordered item
         /// </summary>
-        double Price { get; }
+        public virtual double Price { get; set; }
 
         /// <summary>
         /// The special instructions for an ordered item
         /// </summary>
-        List<string> SpecialInstructions { get; }
+        public virtual List<string> SpecialInstructions { get; set; }
     }
 }
