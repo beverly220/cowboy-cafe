@@ -8,8 +8,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="Label">
-            <Setter Property="Height" Value="60px"></Setter>
-            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Height" Value="20px"></Setter>
+            <Setter Property="FontSize" Value="50"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Height" Value="20px"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Height" Value="50px"></Setter>
@@ -24,11 +28,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <TextBlock HorizontalAlignment="Center">Order</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Order</TextBlock>
             <ListView Name="CurrentOrder"></ListView>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <TextBlock HorizontalAlignment="Center">Entree</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Entree</TextBlock>
             <Button Name="AddAngryChicken">AngryChicken</Button>
             <Button Name="AddCowpokeChili">Cowpoke Chili</Button>
             <Button Name="AddDakotaDoubleBurger">Dakota Double Burger</Button>
@@ -38,14 +42,14 @@
             <Button Name="AddTrailBurger">Trail Burger</Button>
         </StackPanel>
         <StackPanel Grid.Column="2">
-            <TextBlock HorizontalAlignment="Center">Sides</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Sides</TextBlock>
             <Button Name="AddBakedBeans">Baked Beans</Button>
             <Button Name="AddChiliCheeseFries">Chili Cheese Fries</Button>
             <Button Name="AddCornDodgers">Corn Dodgers</Button>
             <Button Name="AddPanDeCampo">Pan de Campo</Button>
         </StackPanel>
         <StackPanel Grid.Column="3">
-            <TextBlock HorizontalAlignment="Center">Drinks</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Drinks</TextBlock>
             <Button Name="AddCowboyCoffee">Cowboy Coffee</Button>
             <Button Name="AddJerkedSoda">Jerked Soda</Button>
             <Button Name="AddTexasTea">Texas Tea</Button>
