@@ -6,6 +6,16 @@ using System.ComponentModel;
 namespace CowboyCafe.Data {
 
     /// <summary>
+    /// Holds the singular global variable
+    /// </summary>
+    public static class Global {
+        /// <summary>
+        /// Last order's number
+        /// </summary>
+        public static uint lastOrderNumber { get; set; } = 1;
+
+    }
+    /// <summary>
     /// Creates an order as a list of iorderitems
     /// </summary>
     public class Order : INotifyPropertyChanged {
@@ -37,14 +47,9 @@ namespace CowboyCafe.Data {
         public IEnumerable<double> ItemPrices => itemPrice.ToArray();
 
         /// <summary>
-        /// Last order's number
-        /// </summary>
-        public static uint lastOrderNumber => 100;
-
-        /// <summary>
         /// Current order's number
         /// </summary>
-        private uint OrderNumber = lastOrderNumber;
+        public uint OrderNumber = 100 + Global.lastOrderNumber;
 
         /// <summary>
         /// The total price of the order
@@ -62,6 +67,7 @@ namespace CowboyCafe.Data {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("OrderNumber"));
         }
 
         /// <summary>
@@ -75,6 +81,7 @@ namespace CowboyCafe.Data {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("OrderNumber"));
         }
 
     }

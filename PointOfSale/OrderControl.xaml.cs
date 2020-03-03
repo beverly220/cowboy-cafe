@@ -46,7 +46,7 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnCancelOrderButtonClicked(object sender, RoutedEventArgs e) {
             DataContext = new Order();
-            lastOrderNumber++;
+            Global.lastOrderNumber++;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnCompleteOrderButtonClicked(object sender, RoutedEventArgs e) {
             DataContext = new Order();
-            lastOrderNumber
+            Global.lastOrderNumber++;
         }
 
     }

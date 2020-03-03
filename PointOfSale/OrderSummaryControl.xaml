@@ -27,7 +27,7 @@
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Order</TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="30" Height="50px" HorizontalAlignment="Center" Text="{Binding Path=OrderNumber, StringFormat=d}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" FontSize="30" Height="50px" HorizontalAlignment="Center" Text="{Binding Path=OrderNumber,  Mode=OneWay, StringFormat=d}"/>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <ListView Name="CurrentOrder" FontSize="30" ItemsSource="{Binding Path = Items, StringFormat={}}"></ListView>
         </StackPanel>
