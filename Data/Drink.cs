@@ -10,20 +10,9 @@ namespace CowboyCafe.Data {
     public abstract class Drink : IOrderItem  {
 
         /// <summary>
-        /// Gets the price of each drink
-        /// </summary>
-        public abstract double Price { get; }
-
-        /// <summary>
         /// Gets the calories of each drink
         /// </summary>
         public abstract uint Calories { get; }
-
-        /// <summary>
-        /// Gets a list of special instructions for
-        /// each drink
-        /// </summary>
-        public abstract List<string> SpecialInstructions { get; }
 
         /// <summary>
         /// Gets the size of the drink

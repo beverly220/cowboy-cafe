@@ -24,18 +24,7 @@ namespace PointOfSale {
         /// </summary>
         public OrderSummaryControl() {
             InitializeComponent();
-            if (DataContext is Order data) {
-                foreach (IOrderItem item in data.Items) {
-                    CurrentOrder.Items.Add(item.ToString());
-                    CurrentOrderPrice.Items.Add("$" + item.Price.ToString());
-                    if (item.SpecialInstructions != null) {
-                        foreach (string s in item.SpecialInstructions) {
-                            CurrentOrderPrice.Items.Add(" ");
-                            CurrentOrder.Items.Add(item.SpecialInstructions.ToString());
-                        }
-                    }
-                }
-            }
         }
+
     }
 }

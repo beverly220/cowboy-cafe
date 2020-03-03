@@ -21,11 +21,30 @@ namespace CowboyCafe.Data {
         private List<IOrderItem> items = new List<IOrderItem>();
 
         /// <summary>
+        /// The list that contains the iorderitem prices
+        /// </summary>
+        private List<double> itemPrice = new List<double>();
+
+        /// <summary>
         /// The ienumerable list that contains the iorderitems
         /// </summary>
         public IEnumerable<IOrderItem> Items => items.ToArray();
 
-        private uint lastOrderNumber => 100;
+        /// <summary>
+        /// The ienumerable list that contains the iorderitem
+        /// prices
+        /// </summary>
+        public IEnumerable<double> ItemPrices => itemPrice.ToArray();
+
+        /// <summary>
+        /// Last order's number
+        /// </summary>
+        public static uint lastOrderNumber => 100;
+
+        /// <summary>
+        /// Current order's number
+        /// </summary>
+        private uint OrderNumber = lastOrderNumber;
 
         /// <summary>
         /// The total price of the order
@@ -38,15 +57,24 @@ namespace CowboyCafe.Data {
         /// <param name="item">the item added to the order</param>
         public void Add(IOrderItem item) {
             items.Add(item);
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
             Subtotal += item.Price;
-            
+            itemPrice.Add(item.Price);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
         }
 
-        public void Remove(IOrderItem item ) {
+        /// <summary>
+        /// Removes an item from the order
+        /// </summary>
+        /// <param name="item">the item removed from the order</param>
+        public void Remove(IOrderItem item) {
             items.Remove(item);
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
             Subtotal -= item.Price;
+            itemPrice.Remove(item.Price);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
         }
 
     }
