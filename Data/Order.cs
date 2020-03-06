@@ -6,19 +6,18 @@ using System.ComponentModel;
 namespace CowboyCafe.Data {
 
     /// <summary>
-    /// Holds the singular global variable
-    /// </summary>
-    public static class Global {
-        /// <summary>
-        /// Last order's number
-        /// </summary>
-        public static uint lastOrderNumber { get; set; } = 1;
-
-    }
-    /// <summary>
     /// Creates an order as a list of iorderitems
     /// </summary>
     public class Order : INotifyPropertyChanged {
+
+        /// <summary>
+        /// Last order's number
+        /// </summary>
+        private static uint lastOrderNumber {
+            get {
+                return lastOrderNumber++;
+            }
+        }
 
         /// <summary>
         /// Creates an event when a property is changed
@@ -49,7 +48,11 @@ namespace CowboyCafe.Data {
         /// <summary>
         /// Current order's number
         /// </summary>
-        public uint OrderNumber = 100 + Global.lastOrderNumber;
+        public uint OrderNumber {
+            get { 
+                return 100 + Global.lastOrderNumber;
+            }
+        }
 
         /// <summary>
         /// The total price of the order
@@ -61,13 +64,13 @@ namespace CowboyCafe.Data {
         /// </summary>
         /// <param name="item">the item added to the order</param>
         public void Add(IOrderItem item) {
+            if(item is INotifyPropertyChanged notify) {
+                notify.PropertyChanged += OnItemPropertyChanged;
+            }
             items.Add(item);
             Subtotal += item.Price;
             itemPrice.Add(item.Price);
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("OrderNumber"));
+           
         }
 
         /// <summary>
@@ -75,13 +78,21 @@ namespace CowboyCafe.Data {
         /// </summary>
         /// <param name="item">the item removed from the order</param>
         public void Remove(IOrderItem item) {
+            if (item is INotifyPropertyChanged notify) {
+                notify.PropertyChanged -= OnItemPropertyChanged;
+            }
             items.Remove(item);
             Subtotal -= item.Price;
             itemPrice.Remove(item.Price);
+            
+        }
+
+        private void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("OrderNumber"));
+            if (e.PropertyName == "Price") {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
+            }
         }
 
     }

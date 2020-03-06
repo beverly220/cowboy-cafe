@@ -30,13 +30,17 @@ namespace PointOfSale {
             CompleteOrderButton.Click += OnCompleteOrderButtonClicked;
         }
 
+        public void SwapScreen (UIElement element) {
+            Container.Child = element;
+        }
+
         /// <summary>
         /// Handles if the Item Selection Button is pressed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnItemSelectionButtonClicked(object sender, RoutedEventArgs e) {
-            
+            Container.Child = new MenuItemSelectionControl();
         }
 
         /// <summary>

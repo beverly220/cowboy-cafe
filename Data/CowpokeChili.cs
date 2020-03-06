@@ -8,10 +8,24 @@ namespace CowboyCafe.Data
     /// </summary>
     public class CowpokeChili : Entree
     {
+
+        /// <summary>
+        /// Defaults the Cowpoke Chili to have cheese
+        /// </summary>
+        private bool cheese = true;
+
         /// <summary>
         /// If the chili is topped with cheese
         /// </summary>
-        public bool Cheese { get; set; } = true;
+        public bool Cheese {
+            get {
+                return cheese;
+            }
+            set {
+                cheese = value;
+                NotifyOfPropertyChanged("Cheese");
+            }
+        }
 
         /// <summary>
         /// If the chili is topped with sour cream
@@ -73,6 +87,7 @@ namespace CowboyCafe.Data
         public override string ToString() {
             return "Cowpoke Chili";
         }
+
     }
 }
 

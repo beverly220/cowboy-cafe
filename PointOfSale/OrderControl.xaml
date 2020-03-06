@@ -27,7 +27,9 @@
                 <Button x:Name="CancelOrderButton" FontSize="30" Grid.Column="1">Cancel Order</Button>
                 <Button x:Name="CompleteOrderButton" FontSize="30" Grid.Column="2">Complete Order</Button>
             </Grid>
-            <local:MenuItemSelectionControl Grid.Column="1" Grid.Row="1"></local:MenuItemSelectionControl>
+            <Border Name="Container" Grid.Column="1" Grid.Row="1">
+                <local:MenuItemSelectionControl></local:MenuItemSelectionControl>
+            </Border>
         </Grid>
         <local:OrderSummaryControl Grid.Column="0"></local:OrderSummaryControl>
     </Grid>
