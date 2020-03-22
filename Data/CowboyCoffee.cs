@@ -10,20 +10,61 @@ namespace CowboyCafe.Data {
     /// </summary>
     public class CowboyCoffee : Drink {
 
+
+        /// <summary>
+        /// Defaults the Cowboy Coffee to not have ice
+        /// </summary>
+        private bool ice = false;
+
         /// <summary>
         /// If served with ice
         /// </summary>
-        public override bool Ice { get; set; } = false;
+        public override bool Ice {
+            get {
+                return ice;
+            }
+            set {
+                ice = value;
+                NotifyOfPropertyChanged("Ice");
+            }
+        }
+
+        /// <summary>
+        /// Defaults the Cowboy Coffee to not be decaf
+        /// </summary>
+        private bool decaf = false;
 
         /// <summary>
         /// If the coffee is decaf
         /// </summary>
-        public bool Decaf { get; set; } = false;
+        public bool Decaf {
+            get {
+                return decaf;
+            }
+            set {
+                decaf = value;
+                NotifyOfPropertyChanged("Decaf");
+            }
+        }
+
+        /// <summary>
+        /// Defaults the Cowboy Coffee to not have
+        /// room for cream
+        /// </summary>
+        private bool roomForCream = false;
 
         /// <summary>
         /// If room for cream is left
         /// </summary>
-        public bool RoomForCream { get; set; } = false;
+        public bool RoomForCream {
+            get {
+                return roomForCream;
+            }
+            set {
+                roomForCream = value;
+                NotifyOfPropertyChanged("RoomForCream");
+            }
+        }
 
         /// <summary>
         /// Returns the correct calories based on the

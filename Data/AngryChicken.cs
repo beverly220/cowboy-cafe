@@ -27,15 +27,42 @@ namespace CowboyCafe.Data {
 			}
 		}
 
-        /// <summary>
-        /// If the entree should be served with a pickle
-        /// </summary>
-        public bool Pickle { get; set; } = true;
+
+		/// <summary>
+		/// Defaults the Angry Chicken to have a pickle
+		/// </summary>
+		private bool pickle = true;
+
+		/// <summary>
+		/// If the entree should be served with a pickle
+		/// </summary>
+		public bool Pickle {
+			get {
+				return pickle;
+			}
+			set {
+				pickle = value;
+				NotifyOfPropertyChanged("Pickle");
+			}
+		}
+
+		/// <summary>
+		/// Defaults the Angry Chicken to have bread
+		/// </summary>
+		private bool bread = true;
 
 		/// <summary>
 		/// If the entree should be served with bread
 		/// </summary>
-		public bool Bread { get; set; } = true;
+		public bool Bread {
+			get {
+				return bread;
+			}
+			set {
+				bread = value;
+				NotifyOfPropertyChanged("Bread");
+			}
+		}
 
 
 		/// <summary>

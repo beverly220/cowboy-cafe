@@ -28,19 +28,58 @@ namespace CowboyCafe.Data
         }
 
         /// <summary>
+        /// Defaults the Cowpoke Chili to have sour cream
+        /// </summary>
+        private bool sourCream = true;
+
+        /// <summary>
         /// If the chili is topped with sour cream
         /// </summary>
-        public bool SourCream { get; set; } = true;
+        public bool SourCream {
+            get {
+                return sourCream;
+            }
+            set {
+                sourCream = value;
+                NotifyOfPropertyChanged("SourCream");
+            }
+        }
+
+        /// <summary>
+        /// Defaults the Cowpoke Chili to have green onions
+        /// </summary>
+        private bool greenOnions = true;
 
         /// <summary>
         /// If the chili is topped with green onions
         /// </summary>
-        public bool GreenOnions { get; set; } = true;
+        public bool GreenOnions {
+            get {
+                return greenOnions;
+            }
+            set {
+                greenOnions = value;
+                NotifyOfPropertyChanged("GreenOnions");
+            }
+        }
+
+        /// <summary>
+        /// Defaults the Cowpoke Chili to have torilla strips
+        /// </summary>
+        private bool tortillaStrips = true;
 
         /// <summary>
         /// If the chili is topped with tortilla strips
         /// </summary>
-        public bool TortillaStrips { get; set; } = true;
+        public bool TortillaStrips {
+            get {
+                return tortillaStrips;
+            }
+            set {
+                tortillaStrips = value;
+                NotifyOfPropertyChanged("TortillaStrips");
+            }
+        }
 
         /// <summary>
         /// The price of the chili

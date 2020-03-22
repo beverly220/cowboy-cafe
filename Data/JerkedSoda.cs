@@ -11,14 +11,40 @@ namespace CowboyCafe.Data {
     public class JerkedSoda : Drink {
 
         /// <summary>
+        /// Defaults the Jerked Soda to have flavor
+        /// </summary>
+        private SodaFlavor flavor;
+
+        /// <summary>
         /// Stores the flavor of the drink
         /// </summary>
-        public SodaFlavor Flavor { get; set; }
+        public SodaFlavor Flavor {
+            get {
+                return flavor;
+            }
+            set {
+                flavor = value;
+                NotifyOfPropertyChanged("Flavor");
+            }
+        }
+
+        /// <summary>
+        /// Defaults the Jerked Soda to have ice
+        /// </summary>
+        private bool ice = true;
 
         /// <summary>
         /// If served with ice
         /// </summary>
-        public override bool Ice { get; set; } = true;
+        public override bool Ice { 
+            get {
+                return ice;
+            }
+            set {
+                ice = value;
+                NotifyOfPropertyChanged("Ice");
+            }
+        }
 
         /// <summary>
         /// Returns the correct calories based on the

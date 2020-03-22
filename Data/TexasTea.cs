@@ -11,19 +11,58 @@ namespace CowboyCafe.Data {
     public class TexasTea : Drink {
 
         /// <summary>
+        /// Defaults the Texas Tea to have ice
+        /// </summary>
+        private bool ice = true;
+
+        /// <summary>
         /// If served with ice
         /// </summary>
-        public override bool Ice { get; set; } = true;
+        public override bool Ice {
+            get {
+                return ice;
+            }
+            set {
+                ice = value;
+                NotifyOfPropertyChanged("Ice");
+            }
+        }
+
+        /// <summary>
+        /// Defaults the Texas Tea to have a lemon
+        /// </summary>
+        private bool lemon = false;
 
         /// <summary>
         /// If served with a lemon
         /// </summary>
-        public bool Lemon { get; set; } = false;
+        public bool Lemon {
+            get {
+                return lemon;
+            }
+            set {
+                lemon = value;
+                NotifyOfPropertyChanged("Lemon");
+            }
+        }
+
+        /// <summary>
+        /// Defaults the Texas Tea to be sweet
+        /// </summary>
+        private bool sweet = true;
 
         /// <summary>
         /// If sweet or unsweet tea
         /// </summary>
-        public bool Sweet { get; set; } = true;
+        public bool Sweet {
+            get {
+                return sweet;
+            }
+            set {
+                sweet = value;
+                NotifyOfPropertyChanged("Sweet");
+            }
+        }
 
         /// <summary>
         /// Returns the correct calories based on the

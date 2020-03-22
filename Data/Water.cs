@@ -11,14 +11,40 @@ namespace CowboyCafe.Data {
     public class Water : Drink {
 
         /// <summary>
+        /// Defaults the Water to have ice
+        /// </summary>
+        private bool ice = true;
+
+        /// <summary>
         /// If served with ice
         /// </summary>
-        public override bool Ice { get; set; } = true;
+        public override bool Ice {
+            get {
+                return ice;
+            }
+            set {
+                ice = value;
+                NotifyOfPropertyChanged("Ice");
+            }
+        }
+
+        /// <summary>
+        /// Defaults the Water to have a lemon
+        /// </summary>
+        private bool lemon = false;
 
         /// <summary>
         /// If served with a lemon
         /// </summary>
-        public bool Lemon { get; set; } = false;
+        public bool Lemon {
+            get {
+                return lemon;
+            }
+            set {
+                lemon = value;
+                NotifyOfPropertyChanged("Lemon");
+            }
+        }
 
         /// <summary>
         /// Returns the correct calories based on the

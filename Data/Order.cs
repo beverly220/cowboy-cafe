@@ -10,12 +10,15 @@ namespace CowboyCafe.Data {
     /// </summary>
     public class Order : INotifyPropertyChanged {
 
+        private static uint Increment = 1;
+
         /// <summary>
         /// Last order's number
         /// </summary>
         private static uint lastOrderNumber {
             get {
-                return lastOrderNumber++;
+                Increment += 1;
+                return Increment;
             }
         }
 
@@ -50,7 +53,7 @@ namespace CowboyCafe.Data {
         /// </summary>
         public uint OrderNumber {
             get { 
-                return 100 + Global.lastOrderNumber;
+                return 100 + lastOrderNumber;
             }
         }
 

@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="PointOfSale.EntreeCustomizeScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PointOfSale"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Height" Value="20px"></Setter>
+            <Setter Property="FontSize" Value="50"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Height" Value="20px"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="50px"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Customize</TextBlock>
+            <Button Name="RemovePickle">Remove Pickle</Button>
+            <Button Name="RemoveCheese">Remove Cheese</Button>
+            <Button Name="RemoveBun">Remove Bun</Button>
+            <Button Name="RemoveKetchup">Remove Ketchup</Button>
+            <Button Name="RemoveMustard">Remove Mustard</Button>
+            <Button Name="RemoveTomato">Remove Tomato</Button>
+            <Button Name="RemoveLettuce">Remove Lettuce</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Entree</TextBlock>
+            <Button Name="RemoveBread">Remove Bread</Button>
+            <Button Name="RemoveSourCream">Remove Sour Cream</Button>
+            <Button Name="RemoveGreenOnion">Remove Green Onion</Button>
+            <Button Name="RemoveTortillaStrips">Remove Tortilla Strips</Button>
+            <Button Name="RemoveMayo">Remove Mayo</Button>
+            <Button Name="RemoveBacon">Remove Bacon</Button>
+            <Button Name="RemoveEgg">Egg</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
