@@ -60,7 +60,7 @@ namespace CowboyCafe.Data {
         /// <summary>
         /// The total price of the order
         /// </summary>
-        public double Subtotal { get; set; } = 0;
+        public double Subtotal { get; private set; } = 0;
 
         /// <summary>
         /// Adds an item to the order

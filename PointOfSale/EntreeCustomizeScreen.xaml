@@ -16,7 +16,7 @@
             <Setter Property="FontSize" Value="15"></Setter>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="Height" Value="50px"></Setter>
+            <Setter Property="Height" Value="47px"></Setter>
             <Setter Property="FontSize" Value="20"></Setter>
         </Style>
     </UserControl.Resources>
@@ -43,7 +43,8 @@
             <Button Name="RemoveTortillaStrips">Remove Tortilla Strips</Button>
             <Button Name="RemoveMayo">Remove Mayo</Button>
             <Button Name="RemoveBacon">Remove Bacon</Button>
-            <Button Name="RemoveEgg">Egg</Button>
+            <Button Name="RemoveEgg">Remove Egg</Button>
+            <Button Name="DoneEditing">Done Customizing Entree</Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -38,7 +38,7 @@ namespace PointOfSale {
             AddWater.Click += OnAddWaterClicked;
         }
 
-        void AddItemAndOpenCutomScreen(IOrderItem item, FrameworkElement screen) {
+        void AddItemAndOpenCustomScreen(IOrderItem item, FrameworkElement screen) {
             var order = DataContext as Order;
             if (order == null) {
                 throw new Exception("DataContext expected to be an Order instance");
@@ -62,9 +62,10 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddAngryChickenClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new AngryChicken());
-                var screen = new AngryChickenCustomScreen();
+            if (sender is Button) {
+                var item = new AngryChicken();
+                var screen = new EntreeCustomizeScreen();
+                screen.RemoveBacon.IsEnabled = false;
                 AddItemAndOpenCustomScreen(item, screen);
             }
         }

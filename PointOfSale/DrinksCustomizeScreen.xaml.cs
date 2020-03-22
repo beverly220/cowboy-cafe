@@ -14,10 +14,10 @@ using CowboyCafe.Data;
 
 namespace PointOfSale {
     /// <summary>
-    /// Interaction logic for EntreeCustomizeScreen.xaml
+    /// Interaction logic for DrinksCustomizeScreen.xaml
     /// </summary>
-    public partial class EntreeCustomizeScreen : UserControl {
-        public EntreeCustomizeScreen() {
+    public partial class DrinksCustomizeScreen : UserControl {
+        public DrinksCustomizeScreen() {
             InitializeComponent();
         }
     }
