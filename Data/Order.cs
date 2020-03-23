@@ -73,7 +73,6 @@ namespace CowboyCafe.Data {
             items.Add(item);
             Subtotal += item.Price;
             itemPrice.Add(item.Price);
-           
         }
 
         /// <summary>

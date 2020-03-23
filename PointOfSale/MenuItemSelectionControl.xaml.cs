@@ -233,7 +233,7 @@ namespace PointOfSale {
         private void OnAddPecosPulledPorkClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
-                var item = new AngryChicken();
+                var item = new PecosPulledPork();
                 var screen = new EntreeCustomizeScreen(item, orderControl);
                 screen.RemoveCheese.IsEnabled = false;
                 screen.RemoveSourCream.IsEnabled = false;

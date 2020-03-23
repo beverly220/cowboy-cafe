@@ -14,6 +14,7 @@ namespace CowboyCafe.Data {
 		/// </summary>
 		public override double Price {
 			get {
+				NotifyOfPropertyChanged("Price");
 				return 5.20;
 			}
 		}
@@ -214,7 +215,12 @@ namespace CowboyCafe.Data {
 		/// </summary>
 		/// <returns>The name of the entree</returns>
 		public override string ToString() {
-			return "Dakota Double Burger";
+			string append = "";
+			foreach (string s in SpecialInstructions) {
+				append += " ";
+				append += s;
+			}
+			return "Dakota Double Burger" + append;
 		}
 
 	}

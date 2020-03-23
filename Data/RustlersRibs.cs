@@ -14,6 +14,7 @@ namespace CowboyCafe.Data {
 		/// </summary>
 		public override double Price {
 			get {
+				NotifyOfPropertyChanged("Price");
 				return 7.50;
 			}
 		}

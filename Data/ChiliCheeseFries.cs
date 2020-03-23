@@ -34,6 +34,7 @@ namespace CowboyCafe.Data {
         /// </summary>
         public override double Price {
             get {
+                NotifyOfPropertyChanged("Price");
                 switch (Size) {
                     case Size.Small:
                         return 1.99;

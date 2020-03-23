@@ -103,6 +103,7 @@ namespace CowboyCafe.Data {
         /// </summary>
         public override double Price {
             get {
+                NotifyOfPropertyChanged("Price");
                 switch (Size) {
                     case Size.Small:
                         return 1.00;
@@ -135,22 +136,27 @@ namespace CowboyCafe.Data {
         /// </summary>
         /// <returns>The name of the drink</returns>
         public override string ToString() {
+            string append = "";
+            foreach (string s in SpecialInstructions) {
+                append += " ";
+                append += s;
+            }
             switch (Size) {
                 case Size.Small:
                     if (Sweet) {
-                        return "Small Texas Sweet Tea";
+                        return "Small Texas Sweet Tea" + append;
                     }
-                    return "Small Texas Plain Tea";
+                    return "Small Texas Plain Tea" + append;
                 case Size.Medium:
                     if (Sweet) {
-                        return "Medium Texas Sweet Tea";
+                        return "Medium Texas Sweet Tea" + append;
                     }
-                    return "Medium Texas Plain Tea";
+                    return "Medium Texas Plain Tea" + append;
                 case Size.Large:
                     if (Sweet) {
-                        return "Large Texas Sweet Tea";
+                        return "Large Texas Sweet Tea" + append;
                     }
-                    return "Large Texas Plain Tea";
+                    return "Large Texas Plain Tea" + append;
                 default:
                     throw new NotImplementedException();
             }
