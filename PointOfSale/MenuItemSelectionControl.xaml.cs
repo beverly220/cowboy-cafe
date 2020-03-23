@@ -69,7 +69,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new AngryChicken();
-                var screen = new EntreeCustomizeScreen();
+                var screen = new EntreeCustomizeScreen(item, orderControl);
                 screen.RemoveCheese.IsEnabled = false;
                 screen.RemoveSourCream.IsEnabled = false;
                 screen.RemoveGreenOnion.IsEnabled = false;
@@ -95,7 +95,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new BakedBeans();
-                var screen = new SideCustomizationScreen();
+                var screen = new SideCustomizationScreen(item, orderControl);
                 AddItemAndOpenCustomScreen(item, screen);
             }
         }
@@ -109,7 +109,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new ChiliCheeseFries();
-                var screen = new SideCustomizationScreen();
+                var screen = new SideCustomizationScreen(item, orderControl);
                 AddItemAndOpenCustomScreen(item, screen);
             }
         }
@@ -123,7 +123,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new CornDodgers();
-                var screen = new SideCustomizationScreen();
+                var screen = new SideCustomizationScreen(item, orderControl);
                 AddItemAndOpenCustomScreen(item, screen);
             }
         }
@@ -137,7 +137,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new CowboyCoffee();
-                var screen = new DrinksCustomizeScreen();
+                var screen = new DrinksCustomizeScreen(item, orderControl);
                 screen.AddUnsweet.IsEnabled = false;
                 screen.AddLemon.IsEnabled = false;
                 screen.SodaIsSarsparilla.IsEnabled = false;
@@ -158,7 +158,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new CowpokeChili();
-                var screen = new EntreeCustomizeScreen();
+                var screen = new EntreeCustomizeScreen(item, orderControl);
                 screen.RemovePickle.IsEnabled = false;
                 screen.RemoveBread.IsEnabled = false;
                 screen.RemoveLettuce.IsEnabled = false;
@@ -182,7 +182,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new DakotaDoubleBurger();
-                var screen = new EntreeCustomizeScreen();
+                var screen = new EntreeCustomizeScreen(item, orderControl);
                 screen.RemoveBread.IsEnabled = false;
                 screen.RemoveSourCream.IsEnabled = false;
                 screen.RemoveGreenOnion.IsEnabled = false;
@@ -202,7 +202,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new JerkedSoda();
-                var screen = new DrinksCustomizeScreen();
+                var screen = new DrinksCustomizeScreen(item, orderControl);
                 screen.AddDecaf.IsEnabled = false;
                 screen.AddRoomForCream.IsEnabled = false;
                 screen.AddUnsweet.IsEnabled = false;
@@ -220,7 +220,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new PanDeCampo();
-                var screen = new SideCustomizationScreen();
+                var screen = new SideCustomizationScreen(item, orderControl);
                 AddItemAndOpenCustomScreen(item, screen);
             }
         }
@@ -234,7 +234,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new AngryChicken();
-                var screen = new EntreeCustomizeScreen();
+                var screen = new EntreeCustomizeScreen(item, orderControl);
                 screen.RemoveCheese.IsEnabled = false;
                 screen.RemoveSourCream.IsEnabled = false;
                 screen.RemoveGreenOnion.IsEnabled = false;
@@ -258,8 +258,9 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddRustlersRibsClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new RustlersRibs());
+            if (sender is Button) {
+                var item = new RustlersRibs();
+                AddItemAndOpenCustomScreen(item, null);
             }
         }
 
@@ -269,9 +270,10 @@ namespace PointOfSale {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnAddTexasTeaClicked(object sender, RoutedEventArgs e) {
+            var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new TexasTea();
-                var screen = new DrinksCustomizeScreen();
+                var screen = new DrinksCustomizeScreen(item, orderControl);
                 screen.AddDecaf.IsEnabled = false;
                 screen.AddRoomForCream.IsEnabled = false;
                 screen.SodaIsSarsparilla.IsEnabled = false;
@@ -293,7 +295,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new TexasTripleBurger();
-                var screen = new EntreeCustomizeScreen();
+                var screen = new EntreeCustomizeScreen(item, orderControl);
                 screen.RemoveBread.IsEnabled = false;
                 screen.RemoveSourCream.IsEnabled = false;
                 screen.RemoveGreenOnion.IsEnabled = false;
@@ -311,7 +313,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new TrailBurger();
-                var screen = new EntreeCustomizeScreen();
+                var screen = new EntreeCustomizeScreen(item, orderControl);
                 screen.RemoveBread.IsEnabled = false;
                 screen.RemoveSourCream.IsEnabled = false;
                 screen.RemoveGreenOnion.IsEnabled = false;
@@ -334,7 +336,7 @@ namespace PointOfSale {
             var orderControl = this.FindAncestor<OrderControl>();
             if (sender is Button) {
                 var item = new Water();
-                var screen = new DrinksCustomizeScreen();
+                var screen = new DrinksCustomizeScreen(item, orderControl);
                 screen.AddDecaf.IsEnabled = false;
                 screen.AddRoomForCream.IsEnabled = false;
                 screen.AddUnsweet.IsEnabled = false;
