@@ -30,6 +30,10 @@ namespace PointOfSale {
             CompleteOrderButton.Click += OnCompleteOrderButtonClicked;
         }
 
+        /// <summary>
+        /// Switches to customization screen
+        /// </summary>
+        /// <param name="element">screen given</param>
         public void SwapScreen (UIElement element) {
             Container.Child = element;
         }

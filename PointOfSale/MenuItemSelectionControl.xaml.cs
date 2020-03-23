@@ -38,6 +38,11 @@ namespace PointOfSale {
             AddWater.Click += OnAddWaterClicked;
         }
 
+        /// <summary>
+        /// Opens the customize screen for a menu item
+        /// </summary>
+        /// <param name="item">the item being ordered</param>
+        /// <param name="screen">the screen to customize the item</param>
         void AddItemAndOpenCustomScreen(IOrderItem item, FrameworkElement screen) {
             var order = DataContext as Order;
             if (order == null) {
@@ -49,7 +54,7 @@ namespace PointOfSale {
                     throw new Exception("An ancestor of OrderControl cannot be found");
                 }
                 screen.DataContext = item;
-                OrderControl.SwapScreen(screen);
+                orderControl.SwapScreen(screen);
             }
             order.Add(item);
         }
@@ -65,7 +70,18 @@ namespace PointOfSale {
             if (sender is Button) {
                 var item = new AngryChicken();
                 var screen = new EntreeCustomizeScreen();
+                screen.RemoveCheese.IsEnabled = false;
+                screen.RemoveSourCream.IsEnabled = false;
+                screen.RemoveGreenOnion.IsEnabled = false;
+                screen.RemoveTortillaStrips.IsEnabled = false;
+                screen.RemoveLettuce.IsEnabled = false;
+                screen.RemoveBun.IsEnabled = false;
+                screen.RemoveKetchup.IsEnabled = false;
+                screen.RemoveMustard.IsEnabled = false;
+                screen.RemoveTomato.IsEnabled = false;
+                screen.RemoveMayo.IsEnabled = false;
                 screen.RemoveBacon.IsEnabled = false;
+                screen.RemoveEgg.IsEnabled = false;
                 AddItemAndOpenCustomScreen(item, screen);
             }
         }
@@ -77,8 +93,10 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddBakedBeansClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new BakedBeans());
+            if (sender is Button) {
+                var item = new BakedBeans();
+                var screen = new SideCustomizationScreen();
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -89,8 +107,10 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddChiliCheeseFriesClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new ChiliCheeseFries());
+            if (sender is Button) {
+                var item = new ChiliCheeseFries();
+                var screen = new SideCustomizationScreen();
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -101,8 +121,10 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddCornDodgersClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new CornDodgers());
+            if (sender is Button) {
+                var item = new CornDodgers();
+                var screen = new SideCustomizationScreen();
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -113,8 +135,17 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddCowboyCoffeeClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new CowboyCoffee());
+            if (sender is Button) {
+                var item = new CowboyCoffee();
+                var screen = new DrinksCustomizeScreen();
+                screen.AddUnsweet.IsEnabled = false;
+                screen.AddLemon.IsEnabled = false;
+                screen.SodaIsSarsparilla.IsEnabled = false;
+                screen.SodaIsCreamSoda.IsEnabled = false;
+                screen.SodaIsOrangeSoda.IsEnabled = false;
+                screen.SodaIsRootBeer.IsEnabled = false;
+                screen.SodaIsBirchBeer.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -125,8 +156,20 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddCowpokeChiliClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new CowpokeChili());
+            if (sender is Button) {
+                var item = new CowpokeChili();
+                var screen = new EntreeCustomizeScreen();
+                screen.RemovePickle.IsEnabled = false;
+                screen.RemoveBread.IsEnabled = false;
+                screen.RemoveLettuce.IsEnabled = false;
+                screen.RemoveBun.IsEnabled = false;
+                screen.RemoveKetchup.IsEnabled = false;
+                screen.RemoveMustard.IsEnabled = false;
+                screen.RemoveTomato.IsEnabled = false;
+                screen.RemoveMayo.IsEnabled = false;
+                screen.RemoveBacon.IsEnabled = false;
+                screen.RemoveEgg.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -137,8 +180,16 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddDakotaDoubleBurgerClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new DakotaDoubleBurger());
+            if (sender is Button) {
+                var item = new DakotaDoubleBurger();
+                var screen = new EntreeCustomizeScreen();
+                screen.RemoveBread.IsEnabled = false;
+                screen.RemoveSourCream.IsEnabled = false;
+                screen.RemoveGreenOnion.IsEnabled = false;
+                screen.RemoveTortillaStrips.IsEnabled = false;
+                screen.RemoveBacon.IsEnabled = false;
+                screen.RemoveEgg.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -149,8 +200,14 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddJerkedSodaClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new JerkedSoda());
+            if (sender is Button) {
+                var item = new JerkedSoda();
+                var screen = new DrinksCustomizeScreen();
+                screen.AddDecaf.IsEnabled = false;
+                screen.AddRoomForCream.IsEnabled = false;
+                screen.AddUnsweet.IsEnabled = false;
+                screen.AddLemon.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -161,8 +218,10 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddPanDeCampoClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new PanDeCampo());
+            if (sender is Button) {
+                var item = new PanDeCampo();
+                var screen = new SideCustomizationScreen();
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -173,8 +232,22 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddPecosPulledPorkClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new PecosPulledPork());
+            if (sender is Button) {
+                var item = new AngryChicken();
+                var screen = new EntreeCustomizeScreen();
+                screen.RemoveCheese.IsEnabled = false;
+                screen.RemoveSourCream.IsEnabled = false;
+                screen.RemoveGreenOnion.IsEnabled = false;
+                screen.RemoveTortillaStrips.IsEnabled = false;
+                screen.RemoveLettuce.IsEnabled = false;
+                screen.RemoveBun.IsEnabled = false;
+                screen.RemoveKetchup.IsEnabled = false;
+                screen.RemoveMustard.IsEnabled = false;
+                screen.RemoveTomato.IsEnabled = false;
+                screen.RemoveMayo.IsEnabled = false;
+                screen.RemoveBacon.IsEnabled = false;
+                screen.RemoveEgg.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -196,11 +269,20 @@ namespace PointOfSale {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnAddTexasTeaClicked(object sender, RoutedEventArgs e) {
-            var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new TexasTea());
+            if (sender is Button) {
+                var item = new TexasTea();
+                var screen = new DrinksCustomizeScreen();
+                screen.AddDecaf.IsEnabled = false;
+                screen.AddRoomForCream.IsEnabled = false;
+                screen.SodaIsSarsparilla.IsEnabled = false;
+                screen.SodaIsCreamSoda.IsEnabled = false;
+                screen.SodaIsOrangeSoda.IsEnabled = false;
+                screen.SodaIsRootBeer.IsEnabled = false;
+                screen.SodaIsBirchBeer.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
+    
 
         /// <summary>
         /// Creates a click event for the Texas Triple Burger button
@@ -209,8 +291,14 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddTexasTripleBurgerClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new TexasTripleBurger());
+            if (sender is Button) {
+                var item = new TexasTripleBurger();
+                var screen = new EntreeCustomizeScreen();
+                screen.RemoveBread.IsEnabled = false;
+                screen.RemoveSourCream.IsEnabled = false;
+                screen.RemoveGreenOnion.IsEnabled = false;
+                screen.RemoveTortillaStrips.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -221,8 +309,19 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddTrailburgerClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new TrailBurger());
+            if (sender is Button) {
+                var item = new TrailBurger();
+                var screen = new EntreeCustomizeScreen();
+                screen.RemoveBread.IsEnabled = false;
+                screen.RemoveSourCream.IsEnabled = false;
+                screen.RemoveGreenOnion.IsEnabled = false;
+                screen.RemoveTortillaStrips.IsEnabled = false;
+                screen.RemoveLettuce.IsEnabled = false;
+                screen.RemoveTomato.IsEnabled = false;
+                screen.RemoveMayo.IsEnabled = false;
+                screen.RemoveBacon.IsEnabled = false;
+                screen.RemoveEgg.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
@@ -233,8 +332,18 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnAddWaterClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            if (DataContext is Order data) {
-                data.Add(new Water());
+            if (sender is Button) {
+                var item = new Water();
+                var screen = new DrinksCustomizeScreen();
+                screen.AddDecaf.IsEnabled = false;
+                screen.AddRoomForCream.IsEnabled = false;
+                screen.AddUnsweet.IsEnabled = false;
+                screen.SodaIsSarsparilla.IsEnabled = false;
+                screen.SodaIsCreamSoda.IsEnabled = false;
+                screen.SodaIsOrangeSoda.IsEnabled = false;
+                screen.SodaIsRootBeer.IsEnabled = false;
+                screen.SodaIsBirchBeer.IsEnabled = false;
+                AddItemAndOpenCustomScreen(item, screen);
             }
         }
 
