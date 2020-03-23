@@ -43,7 +43,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="item">the item being ordered</param>
         /// <param name="screen">the screen to customize the item</param>
-        void AddItemAndOpenCustomScreen(IOrderItem item, FrameworkElement screen) {
+        public void AddItemAndOpenCustomScreen(IOrderItem item, FrameworkElement screen) {
             var order = DataContext as Order;
             if (order == null) {
                 throw new Exception("DataContext expected to be an Order instance");
