@@ -32,6 +32,7 @@
             <Button Name="MediumSize">Medium</Button>
             <Button Name="LargeSize">Large</Button>
             <Button Name="DoneEditing">Done Customizing</Button>
+            <Button Name="RemoveDrink">Remove Current Drink</Button>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock HorizontalAlignment="Center" FontSize="40" Height="80px">Customize</TextBlock>

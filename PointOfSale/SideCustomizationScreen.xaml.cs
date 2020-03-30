@@ -24,6 +24,7 @@ namespace PointOfSale {
             SmallSize.Click += OnAddSmallSizeClicked;
             MediumSize.Click += OnAddMediumSizeClicked;
             LargeSize.Click += OnAddLargeSizeClicked;
+            RemoveSide.Click += OnAddRemoveSideClicked;
         }
 
         /// <summary>
@@ -35,6 +36,18 @@ namespace PointOfSale {
         /// Holds the order control
         /// </summary>
         OrderControl orderControl;
+
+        /// <summary>
+        /// Creates a click event for the Remove Entree button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAddRemoveSideClicked(object sender, RoutedEventArgs e) {
+            if (orderControl.DataContext is Order o) {
+                o.Remove(CurrentSide);
+            }
+            orderControl.SwapScreen(new MenuItemSelectionControl());
+        }
 
         /// <summary>
         /// Creates a click event for the Small button

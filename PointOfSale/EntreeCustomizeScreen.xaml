@@ -34,6 +34,7 @@
             <Button Name="RemoveMustard">Remove Mustard</Button>
             <Button Name="RemoveTomato">Remove Tomato</Button>
             <Button Name="RemoveLettuce">Remove Lettuce</Button>
+            <Button Name="RemoveEntree">Remove Entree from Order</Button>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Entree</TextBlock>

@@ -35,6 +35,7 @@ namespace PointOfSale {
             SodaIsBirchBeer.Click += OnAddSodaIsBirchBeerClicked;
             SodaIsRootBeer.Click += OnAddSodaIsRootBeerClicked;
             DoneEditing.Click += OnAddDoneEditingClicked;
+            RemoveDrink.Click += OnAddRemoveDrinkClicked;
         }
 
         /// <summary>
@@ -46,6 +47,18 @@ namespace PointOfSale {
         /// Holds the order control
         /// </summary>
         OrderControl orderControl;
+
+        /// <summary>
+        /// Creates a click event for the Remove Entree button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAddRemoveDrinkClicked(object sender, RoutedEventArgs e) {
+            if (orderControl.DataContext is Order o) {
+                o.Remove(CurrentDrink);
+            }
+            orderControl.SwapScreen(new MenuItemSelectionControl());
+        }
 
         /// <summary>
         /// Creates a click event for the Done Editing button

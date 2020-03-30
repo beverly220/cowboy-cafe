@@ -26,6 +26,7 @@
             <Button Name="SmallSize">Small</Button>
             <Button Name="MediumSize">Medium</Button>
             <Button Name="LargeSize">Large</Button>
+            <Button Name="RemoveSide">Remove Current Side</Button>
         </StackPanel>
     </Grid>
 </UserControl>

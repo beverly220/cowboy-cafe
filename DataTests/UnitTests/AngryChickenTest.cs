@@ -7,6 +7,16 @@ namespace CowboyCafe.DataTests
 {
     public class AngryChickenTest
     {
+
+        [Fact]
+        public void ChangingBreadPropertyShouldInvokePropertyChangedForBread() {
+            var chicken = new AngryChicken();
+            Assert.PropertyChanged(chicken, "Bread", () => {
+                chicken.Bread = false;
+            });
+        }
+
+
         [Fact]
         public void DefaultPriceShouldBeCorrect()
         {

@@ -36,6 +36,7 @@ namespace PointOfSale {
             RemoveMayo.Click += OnAddRemoveMayoClicked;
             RemoveBacon.Click += OnAddRemoveBaconClicked;
             RemoveEgg.Click += OnAddRemoveEggClicked;
+            RemoveEntree.Click += OnAddRemoveEntreeClicked;
         }
 
         /// <summary>
@@ -47,6 +48,18 @@ namespace PointOfSale {
         /// Holds the order control
         /// </summary>
         OrderControl orderControl;
+
+        /// <summary>
+        /// Creates a click event for the Remove Entree button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAddRemoveEntreeClicked(object sender, RoutedEventArgs e) {
+            if(orderControl.DataContext is Order o) {
+                o.Remove(CurrentEntree);
+            }
+            orderControl.SwapScreen(new MenuItemSelectionControl());
+        }
 
         /// <summary>
         /// Creates a click event for the Done Editing button
