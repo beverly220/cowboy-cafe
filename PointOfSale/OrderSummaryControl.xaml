@@ -29,10 +29,10 @@
         <TextBlock HorizontalAlignment="Center" FontSize="30" Height="50px">Order</TextBlock>
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="30" Height="50px" HorizontalAlignment="Center" Text="{Binding Path=OrderNumber}"/>
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <ListView Name="CurrentOrder" FontSize="30" ItemsSource="{Binding Path = Items, StringFormat={}}"></ListView>
+            <ListBox Name="CurrentOrder" FontSize="30" SelectionChanged="ChangePastItem" ItemsSource="{Binding Path = Items, StringFormat={}}"></ListBox>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <ListView Name="CurrentOrderPrice" FontSize="15" ItemsSource="{Binding Path=ItemPrices, StringFormat=c}"></ListView>
+            <ListBox Name="CurrentOrderPrice" FontSize="15" ItemsSource="{Binding Path=ItemPrices, StringFormat=c}"></ListBox>
         </StackPanel>
         <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" FontSize="30" Height="50px">Subtotal</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=Subtotal, Mode=OneWay, StringFormat=c}"/>
