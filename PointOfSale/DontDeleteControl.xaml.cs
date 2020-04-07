@@ -48,6 +48,63 @@ namespace PointOfSale {
         /// </summary>
         private double AmountGiven { get; set; } = 0;
 
+        private void AdjustDrawer(double adj) {
+            var orderControl = this.FindAncestor<OrderControl>();
+            while (adj > 0) {
+                if (adj > 100 && orderControl.CurrentDrawer.Hundreds > 1) {
+                    adj -= 100.0;
+                    orderControl.CurrentDrawer.RemoveBill(Bills.Hundred, 1);
+                }
+                else if (adj > 50 && orderControl.CurrentDrawer.Fifties > 1) {
+                    adj -= 50.0;
+                    orderControl.CurrentDrawer.RemoveBill(Bills.Fifty, 1);
+                }
+                else if (adj > 20 && orderControl.CurrentDrawer.Twenties > 1) {
+                    adj -= 20.0;
+                    orderControl.CurrentDrawer.RemoveBill(Bills.Twenty, 1);
+                }
+                else if (adj > 10 && orderControl.CurrentDrawer.Tens > 1) {
+                    adj -= 10.0;
+                    orderControl.CurrentDrawer.RemoveBill(Bills.Ten, 1);
+                }
+                else if (adj > 5 && orderControl.CurrentDrawer.Fives > 1) {
+                    adj -= 5.0;
+                    orderControl.CurrentDrawer.RemoveBill(Bills.Five, 1);
+                }
+                else if (adj > 1 && orderControl.CurrentDrawer.Ones > 1) {
+                    adj -= 1.0;
+                    orderControl.CurrentDrawer.RemoveBill(Bills.One, 1);
+                }
+                else if (adj > .5 && orderControl.CurrentDrawer.HalfDollars > 1) {
+                    adj -= .5;
+                    orderControl.CurrentDrawer.RemoveCoin(Coins.HalfDollar, 1);
+                }
+                else if (adj > .25 && orderControl.CurrentDrawer.Quarters > 1) {
+                    adj -= .25;
+                    orderControl.CurrentDrawer.RemoveCoin(Coins.Quarter, 1);
+                }
+                else if (adj > .1 && orderControl.CurrentDrawer.Dimes > 1) {
+                    adj -= .1;
+                    orderControl.CurrentDrawer.RemoveCoin(Coins.Dime, 1);
+                }
+                else if (adj > .05 && orderControl.CurrentDrawer.Nickels > 1) {
+                    adj -= .05;
+                    orderControl.CurrentDrawer.RemoveCoin(Coins.Nickel, 1);
+                }
+                else if (adj > .1 && orderControl.CurrentDrawer.Pennies > 1) {
+                    adj -= .1;
+                    orderControl.CurrentDrawer.RemoveCoin(Coins.Penny, 1);
+                }
+                else {
+                    ///Restock the drawer
+                    orderControl.CurrentDrawer.AddCoin(Coins.Penny, 50);
+                    orderControl.CurrentDrawer.AddCoin(Coins.Dime, 10);
+                    orderControl.CurrentDrawer.AddBill(Bills.One, 25);
+                    orderControl.CurrentDrawer.AddBill(Bills.Five, 10);
+                }
+            }
+        }
+
         /// <summary>
         /// Creates a click event for the Penny button
         /// </summary>
@@ -68,8 +125,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -103,8 +160,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -139,8 +196,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -174,8 +231,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -209,8 +266,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -244,8 +301,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -279,8 +336,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -314,8 +371,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -350,8 +407,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -386,8 +443,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -421,8 +478,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
@@ -456,8 +513,8 @@ namespace PointOfSale {
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
             else if (StillDue < 0) {
-                AdjustDrawer();
                 StillDue *= -1.0;
+                AdjustDrawer(StillDue);
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
