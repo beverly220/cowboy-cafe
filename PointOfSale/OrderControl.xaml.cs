@@ -90,7 +90,7 @@ namespace PointOfSale {
             var o = DataContext as Order;
             receipt.Print(o.ToString(given));
             Stupid();
-            SwapScreen(new OrderSummaryControl());
+            SwapScreen(new MenuItemSelectionControl());
         }
 
         public void GivenMoreCash(double given) {
@@ -98,7 +98,7 @@ namespace PointOfSale {
             var o = DataContext as Order;
             receipt.Print(o.ToString(given));
             Stupid();
-            SwapScreen(new OrderSummaryControl());
+            SwapScreen(new MenuItemSelectionControl());
         }
     }
 }
