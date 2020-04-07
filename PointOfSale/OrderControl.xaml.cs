@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CowboyCafe.Data;
+using CashRegister;
 
 namespace PointOfSale {
 
@@ -28,13 +29,18 @@ namespace PointOfSale {
             ItemSelectionButton.Click += OnItemSelectionButtonClicked;
             CancelOrderButton.Click += OnCancelOrderButtonClicked;
             CompleteOrderButton.Click += OnCompleteOrderButtonClicked;
+            CurrentDrawer.AddBill(Bills.One, 25);
+            CurrentDrawer.AddBill(Bills.Five, 10);
+            CurrentDrawer.AddBill(Bills.Ten, 2);
+            CurrentDrawer.AddCoin(Coins.Penny, 75);
+            CurrentDrawer.AddCoin(Coins.Nickel, 20);
+            CurrentDrawer.AddCoin(Coins.Dime, 10);
         }
 
         /// <summary>
-        /// The current order since it makes more sense
-        /// than running in circles with DataContext
+        /// The cash drawer
         /// </summary>
-        Order RelevantOrder = new Order();
+        public CashDrawer CurrentDrawer = new CashDrawer();
 
         /// <summary>
         /// Switches to customization screen

@@ -26,17 +26,17 @@ namespace PointOfSale {
         }
 
         /// <summary>
-        /// Creates a click event for the Baked Beans button
+        /// Creates a click event for the Cash button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnCashPaymentClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            
+            orderControl.SwapScreen(new DontDeleteControl());
         }
 
         /// <summary>
-        /// Creates a click event for the Baked Beans button
+        /// Creates a click event for the Credit button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
