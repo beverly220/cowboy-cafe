@@ -20,6 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -34,7 +35,9 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <ListBox Name="CurrentOrderPrice" FontSize="15" ItemsSource="{Binding Path=ItemPrices, StringFormat=c}"></ListBox>
         </StackPanel>
-        <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" FontSize="30" Height="50px">Subtotal</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=Subtotal, Mode=OneWay, StringFormat=c}"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" FontSize="25" Height="50px">Tax</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=Tax, Mode=OneWay, StringFormat=c}"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" FontSize="30" Height="50px">Subtotal</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=Subtotal, Mode=OneWay, StringFormat=c}"/>
     </Grid>
 </UserControl>

@@ -31,6 +31,12 @@ namespace PointOfSale {
         }
 
         /// <summary>
+        /// The current order since it makes more sense
+        /// than running in circles with DataContext
+        /// </summary>
+        Order RelevantOrder = new Order();
+
+        /// <summary>
         /// Switches to customization screen
         /// </summary>
         /// <param name="element">screen given</param>
@@ -62,8 +68,14 @@ namespace PointOfSale {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnCompleteOrderButtonClicked(object sender, RoutedEventArgs e) {
-            DataContext = new Order();
+            SwapScreen(new TransactionControl());
         }
 
+        /// <summary>
+        /// Helper method for Transaction Control
+        /// </summary>
+        public void Stupid() {
+            DataContext = new Order();
+        }
     }
 }

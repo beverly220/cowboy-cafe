@@ -63,6 +63,11 @@ namespace CowboyCafe.Data {
         public double Subtotal { get; private set; } = 0;
 
         /// <summary>
+        /// The total tax of the order
+        /// </summary>
+        public double Tax { get; private set; } = 0;
+
+        /// <summary>
         /// Adds an item to the order
         /// </summary>
         /// <param name="item">the item added to the order</param>
@@ -72,6 +77,8 @@ namespace CowboyCafe.Data {
             }
             items.Add(item);
             Subtotal += item.Price;
+            Tax += (.16 * item.Price);
+            Subtotal += (.16 * item.Price);
             itemPrice.Add(item.Price);
         }
 
@@ -85,18 +92,59 @@ namespace CowboyCafe.Data {
             }
             items.Remove(item);
             Subtotal -= item.Price;
+            Tax -= (.16 * item.Price);
+            Subtotal -= Tax;
             itemPrice.Remove(item.Price);
             
         }
 
-        private void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e) {
+        public void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ItemPrices"));
             if (e.PropertyName == "Price") {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tax"));
             }
         }
 
+        public override string ToString() {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Order Number " + OrderNumber.ToString());
+            sb.AppendLine();
+            sb.Append(DateTime.Now.ToString());
+            sb.AppendLine();
+            foreach (IOrderItem i in items) {
+                sb.Append(i.ToString() + "   " + i.Price.ToString());
+                sb.AppendLine();
+            }
+            sb.Append("Tax is " + Tax.ToString());
+            sb.AppendLine();
+            sb.Append("Total is" + Subtotal.ToString());
+            sb.AppendLine();
+            sb.Append("Paid with Credit");
+            return sb.ToString();
+        }
+
+        public string ToString(double cashGiven) {
+            StringBuilder sb = new StringBuilder();
+            double changeDue = Subtotal - cashGiven;
+            sb.Append("Order Number " + OrderNumber.ToString());
+            sb.AppendLine();
+            sb.Append(DateTime.Now.ToString());
+            sb.AppendLine();
+            foreach (IOrderItem i in items) {
+                sb.Append(i.ToString() + "   " + i.Price.ToString());
+                sb.AppendLine();
+            }
+            sb.Append("Tax is " + Tax.ToString());
+            sb.AppendLine();
+            sb.Append("Total is" + Subtotal.ToString());
+            sb.AppendLine();
+            sb.Append("Paid with " + cashGiven.ToString());
+            sb.AppendLine();
+            sb.Append("Change due " + changeDue.ToString());
+            return sb.ToString();
+        }
     }
 
 }
