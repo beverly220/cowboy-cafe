@@ -67,7 +67,7 @@ namespace PointOfSale {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnCompleteOrderButtonClicked(object sender, RoutedEventArgs e) {
+        private void OnCompleteOrderButtonClicked(object sender, RoutedEventArgs e) { 
             SwapScreen(new TransactionControl());
         }
 
