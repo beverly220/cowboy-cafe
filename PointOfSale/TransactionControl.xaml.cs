@@ -32,7 +32,9 @@ namespace PointOfSale {
         /// <param name="e"></param>
         private void OnCashPaymentClicked(object sender, RoutedEventArgs e) {
             var orderControl = this.FindAncestor<OrderControl>();
-            orderControl.SwapScreen(new DontDeleteControl());
+            if (DataContext is Order o) {
+                orderControl.SwapScreen(new DontDeleteControl(o.Subtotal));
+            }
         }
 
         /// <summary>

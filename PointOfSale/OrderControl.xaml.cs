@@ -83,5 +83,22 @@ namespace PointOfSale {
         public void Stupid() {
             DataContext = new Order();
         }
+
+        public void GivenExactCash(double given) {
+            MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
+            ReceiptPrinter receipt = new ReceiptPrinter();
+            var o = DataContext as Order;
+            receipt.Print(o.ToString(given));
+            Stupid();
+            SwapScreen(new OrderSummaryControl());
+        }
+
+        public void GivenMoreCash(double given) {
+            ReceiptPrinter receipt = new ReceiptPrinter();
+            var o = DataContext as Order;
+            receipt.Print(o.ToString(given));
+            Stupid();
+            SwapScreen(new OrderSummaryControl());
+        }
     }
 }

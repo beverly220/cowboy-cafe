@@ -18,21 +18,35 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" Height="50px">Total Amount Still Due:</TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=StillDue, Mode=OneWay, StringFormat=c}"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" FontSize="30" Height="50px" Text="{Binding Path=StillDue, Mode=OneWay, StringFormat=c}"/>
         <Button Grid.Row="1" Grid.Column="0" FontSize="40" Name="AddPenny">Penny</Button>
-        <Button Grid.Row="1" Grid.Column="1" FontSize="40" Name="AddTwo">Twos</Button>
+        <Button Grid.Row="1" Grid.Column="2" FontSize="40" Name="AddTwo">Twos</Button>
         <Button Grid.Row="2" Grid.Column="0"  FontSize="40" Name="AddNickel">Nickel</Button>
-        <Button Grid.Row="2" Grid.Column="1" FontSize="40" Name="AddFive">Fives</Button>
+        <Button Grid.Row="2" Grid.Column="2" FontSize="40" Name="AddFive">Fives</Button>
         <Button Grid.Row="3" Grid.Column="0" FontSize="40" Name="AddDime">Dime</Button>
-        <Button Grid.Row="3" Grid.Column="1" FontSize="40" Name="AddTen">Tens</Button>
+        <Button Grid.Row="3" Grid.Column="2" FontSize="40" Name="AddTen">Tens</Button>
         <Button Grid.Row="4" Grid.Column="0" FontSize="40" Name="AddQuarter">Quarter</Button>
-        <Button Grid.Row="4" Grid.Column="1" FontSize="40" Name="AddTwenty">Twenties</Button>
+        <Button Grid.Row="4" Grid.Column="2" FontSize="40" Name="AddTwenty">Twenties</Button>
         <Button Grid.Row="5" Grid.Column="0" FontSize="40" Name="AddHalfDollar">Half Dollar</Button>
-        <Button Grid.Row="5" Grid.Column="1" FontSize="40" Name="AddFifty">Fifties</Button>
+        <Button Grid.Row="5" Grid.Column="2" FontSize="40" Name="AddFifty">Fifties</Button>
         <Button Grid.Row="6" Grid.Column="0" FontSize="40" Name="AddOne">Ones</Button>
-        <Button Grid.Row="6" Grid.Column="1" FontSize="40" Name="AddHundred">Hundreds</Button>
+        <Button Grid.Row="6" Grid.Column="2" FontSize="40" Name="AddHundred">Hundreds</Button>
+        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=PennyCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" FontSize="30" Height="50px" Text="{Binding Path=TwoCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=NickelCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" FontSize="30" Height="50px" Text="{Binding Path=FiveCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=DimeCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" FontSize="30" Height="50px" Text="{Binding Path=TenCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=QuarterCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="4" Grid.Column="3" FontSize="30" Height="50px" Text="{Binding Path=TwentyCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=HalfDollarCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="5" Grid.Column="3" FontSize="30" Height="50px" Text="{Binding Path=FiftyCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" FontSize="30" Height="50px" Text="{Binding Path=OneCount, Mode=OneWay}"/>
+        <TextBlock Grid.Row="6" Grid.Column="3" FontSize="30" Height="50px" Text="{Binding Path=HundredCount, Mode=OneWay}"/>
     </Grid>
 </UserControl>

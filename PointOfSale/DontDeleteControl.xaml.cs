@@ -19,11 +19,9 @@ namespace PointOfSale {
     /// Interaction logic for DontDeleteControl.xaml
     /// </summary>
     public partial class DontDeleteControl : UserControl {
-        public DontDeleteControl() {
+        public DontDeleteControl(double total) {
             InitializeComponent();
-            if (DataContext is Order o) {
-                StillDue = o.Subtotal;
-            }
+            StillDue = total;
             AddPenny.Click += OnAddPennyClicked;
             AddNickel.Click += OnAddNickelClicked;
             AddDime.Click += OnAddDimeClicked;
@@ -41,7 +39,7 @@ namespace PointOfSale {
         /// <summary>
         /// Subtotal still owed
         /// </summary>
-        public double StillDue { get; set; }
+        public double StillDue { get; set; } = 234.67;
 
         /// <summary>
         /// Subtotal still owed
@@ -50,7 +48,7 @@ namespace PointOfSale {
 
         private void AdjustDrawer(double adj) {
             var orderControl = this.FindAncestor<OrderControl>();
-            while (adj > 0) {
+            while (adj < 0) {
                 if (adj > 100 && orderControl.CurrentDrawer.Hundreds > 1) {
                     adj -= 100.0;
                     orderControl.CurrentDrawer.RemoveBill(Bills.Hundred, 1);
@@ -106,6 +104,126 @@ namespace PointOfSale {
         }
 
         /// <summary>
+        /// The amount of pennies
+        /// </summary>
+        public int PennyCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Pennies; 
+            }
+        }
+
+        /// <summary>
+        /// The amount of nickels
+        /// </summary>
+        public int NickelCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Nickels;
+            }
+        }
+
+        /// <summary>
+        /// The amount of dimes
+        /// </summary>
+        public int DimeCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Dimes;
+            }
+        }
+
+        /// <summary>
+        /// The amount of quarters
+        /// </summary>
+        public int QuarterCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Quarters;
+            }
+        }
+
+        /// <summary>
+        /// The amount of half dollars
+        /// </summary>
+        public int HalfDollarCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.HalfDollars;
+            }
+        }
+
+        /// <summary>
+        /// The amount of ones
+        /// </summary>
+        public int OneCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Ones;
+            }
+        }
+
+        /// <summary>
+        /// The amount of twos
+        /// </summary>
+        public int TwoCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Twos;
+            }
+        }
+
+        /// <summary>
+        /// The amount of fives
+        /// </summary>
+        public int FiveCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Fives;
+            }
+        }
+
+        /// <summary>
+        /// The amount of tens
+        /// </summary>
+        public int TenCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Tens;
+            }
+        }
+
+        /// <summary>
+        /// The amount of twenties
+        /// </summary>
+        public int TwentyCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Twenties;
+            }
+        }
+
+        /// <summary>
+        /// The amount of fifties
+        /// </summary>
+        public int FiftyCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Fifties;
+            }
+        }
+
+        /// <summary>
+        /// The amount of hundreds
+        /// </summary>
+        public int HundredCount {
+            get {
+                var orderControl = this.FindAncestor<OrderControl>();
+                return orderControl.CurrentDrawer.Hundreds;
+            }
+        }
+
+        /// <summary>
         /// Creates a click event for the Penny button
         /// </summary>
         /// <param name="sender"></param>
@@ -116,27 +234,14 @@ namespace PointOfSale {
             AmountGiven += .01;
             orderControl.CurrentDrawer.AddCoin(Coins.Penny, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
         }
 
@@ -151,27 +256,14 @@ namespace PointOfSale {
             AmountGiven += .05;
             orderControl.CurrentDrawer.AddCoin(Coins.Nickel, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
 
         }
@@ -187,27 +279,14 @@ namespace PointOfSale {
             AmountGiven += .10;
             orderControl.CurrentDrawer.AddCoin(Coins.Dime, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
         }
 
@@ -222,27 +301,14 @@ namespace PointOfSale {
             AmountGiven += .25;
             orderControl.CurrentDrawer.AddCoin(Coins.Quarter, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
         }
 
@@ -257,27 +323,14 @@ namespace PointOfSale {
             AmountGiven += 1.0;
             orderControl.CurrentDrawer.AddBill(Bills.One, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
         }
 
@@ -292,27 +345,14 @@ namespace PointOfSale {
             AmountGiven += 2.0;
             orderControl.CurrentDrawer.AddBill(Bills.Two, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                    orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
-                StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
-                    "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                    StillDue *= -1.0;
+                    MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
+                        "Change Due", MessageBoxButton.OK);
+                    AdjustDrawer(StillDue);
+                    orderControl.GivenMoreCash(AmountGiven);
             }
         }
 
@@ -327,27 +367,14 @@ namespace PointOfSale {
             AmountGiven += .50;
             orderControl.CurrentDrawer.AddCoin(Coins.HalfDollar, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
         }
 
@@ -362,27 +389,14 @@ namespace PointOfSale {
             AmountGiven += 5.0;
             orderControl.CurrentDrawer.AddBill(Bills.Five, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
 
         }
@@ -398,27 +412,14 @@ namespace PointOfSale {
             AmountGiven += 10.0;
             orderControl.CurrentDrawer.AddBill(Bills.Ten, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
 
         }
@@ -434,27 +435,14 @@ namespace PointOfSale {
             AmountGiven += 20.0;
             orderControl.CurrentDrawer.AddBill(Bills.Twenty, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
         }
 
@@ -469,27 +457,14 @@ namespace PointOfSale {
             AmountGiven += 50.0;
             orderControl.CurrentDrawer.AddBill(Bills.Fifty, 1);
             if (StillDue == 0) {
-                MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                orderControl.GivenExactCash(AmountGiven);
             }
             else if (StillDue < 0) {
                 StillDue *= -1.0;
-                AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed " + StillDue.ToString("0.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
-                ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                AdjustDrawer(StillDue);
+                orderControl.GivenMoreCash(AmountGiven);
             }
         }
 
@@ -506,9 +481,8 @@ namespace PointOfSale {
             if (StillDue == 0) {
                 MessageBox.Show("Customer gave exact amount, no change due", "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
+                var o = DataContext as Order;
+                receipt.Print(o.ToString(AmountGiven));
                 orderControl.Stupid();
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
@@ -518,11 +492,8 @@ namespace PointOfSale {
                 MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
-                if (DataContext is Order o) {
-                    receipt.Print(o.ToString(AmountGiven));
-                }
-                orderControl.Stupid();
-                orderControl.SwapScreen(new OrderSummaryControl());
+                var o = DataContext as Order;
+                receipt.Print(o.ToString(AmountGiven));
                 orderControl.Stupid();
                 orderControl.SwapScreen(new OrderSummaryControl());
             }
