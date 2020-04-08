@@ -489,7 +489,7 @@ namespace PointOfSale {
             else if (StillDue < 0) {
                 StillDue *= -1.0;
                 AdjustDrawer(StillDue);
-                MessageBox.Show("Customer was dispensed " + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
+                MessageBox.Show("Customer was dispensed $" + StillDue.ToString("#.00") + " below and drawer has adjusted accordingly",
                     "Change Due", MessageBoxButton.OK);
                 ReceiptPrinter receipt = new ReceiptPrinter();
                 var o = DataContext as Order;
