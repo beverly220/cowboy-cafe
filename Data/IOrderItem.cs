@@ -10,6 +10,11 @@ namespace CowboyCafe.Data {
         public virtual double Price { get; set; }
 
         /// <summary>
+        /// The calories of an ordered item
+        /// </summary>
+        public virtual uint Calories { get; set; }
+
+        /// <summary>
         /// The special instructions for an ordered item
         /// </summary>
         public virtual List<string> SpecialInstructions { get; set; }
