@@ -23,7 +23,6 @@ namespace Website.Pages {
         /// <summary>
         /// The current search terms 
         /// </summary>
-        [BindProperty]
         public string SearchTerms { get; set; }
 
         /// <summary>
@@ -61,6 +60,9 @@ namespace Website.Pages {
             MenuItems = Menu.FilterByType(MenuItems, Types);
             MenuItems = Menu.FilterByPrice(MenuItems, PriceMin, PriceMax);
             MenuItems = Menu.FilterByCalories(MenuItems, CaloriesMin, CalorieMax);
+            if(Menu.AllMenuItems.Count() == MenuItems.Count()) {
+                MenuItems = Enumerable.Empty<IOrderItem>();
+            }
         }
     }
 }

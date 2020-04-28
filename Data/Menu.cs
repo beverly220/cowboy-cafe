@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CowboyCafe.Data {
     public class Menu {
-        private static IEnumerable<IOrderItem> AllMenuItems {
+        public static IEnumerable<IOrderItem> AllMenuItems {
             get {
                 List<IOrderItem> all = new List<IOrderItem>();
                 foreach (IOrderItem o in Entrees) {
@@ -83,7 +83,9 @@ namespace CowboyCafe.Data {
         /// <param name="types">The types to include</param>
         /// <returns>A collection containing only movies that match the filter</returns>
         public static IEnumerable<IOrderItem> FilterByType(IEnumerable<IOrderItem> items, IEnumerable<string> types) {
-            if (types == null || types.Count() == 0) return items;
+            if (types == null || types.Count() == 0) {
+                return items;
+            }
             List<IOrderItem> results = new List<IOrderItem>();
             foreach (IOrderItem item in items) {
                 if (types.Contains("Entree") && item is Entree) {
