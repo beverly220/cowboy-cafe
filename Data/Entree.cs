@@ -18,7 +18,7 @@ namespace CowboyCafe.Data {
         /// <summary>
         /// Gets the calories of each entree
         /// </summary>
-        public abstract uint Calories { get; }
+        public abstract override uint Calories { get; }
 
         /// <summary>
         /// Updates if a Property is Changed

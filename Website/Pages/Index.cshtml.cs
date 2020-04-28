@@ -15,8 +15,51 @@ namespace Website.Pages {
             _logger = logger;
         }
 
-        public void OnGet() {
+        /// <summary>
+        /// The items to display on the index page 
+        /// </summary>
+        public IEnumerable<IOrderItem> MenuItems { get; protected set; }
 
+        /// <summary>
+        /// The current search terms 
+        /// </summary>
+        public string SearchTerms { get; set; }
+
+        /// <summary>
+        /// The filtered items by type
+        /// </summary>
+        public string[] Types { get; set; }
+
+        /// <summary>
+        /// Gets and sets the minimium calories
+        /// </summary>
+        public float CaloriesMin { get; set; }
+
+        /// <summary>
+        /// Gets and sets the maximum calories
+        /// </summary>
+        public float CaloriesMax { get; set; }
+
+        /// <summary>
+        /// Gets and sets the minimium price
+        /// </summary>
+        public float PriceMin { get; set; }
+
+        /// <summary>
+        /// Gets and sets the maximum price
+        /// </summary>
+        public float PriceMax { get; set; }
+
+        /// <summary>
+        /// Gets the search results for display on the page
+        /// </summary>
+        public void OnGet(double? PriceMin, double? PriceMax, int? CaloriesMin, int? CaloriesMax) {
+            SearchTerms = Request.Query["SearchTerms"];
+            Types = Request.Query["Types"];
+            MenuItems = Menu.Search(SearchTerms);
+            MenuItems = Menu.FilterByType(MenuItems, Types);
+            MenuItems = Menu.FilterByPrice(MenuItems, PriceMin, PriceMax);
+            MenuItems = Menu.FilterByCalories(MenuItems, CaloriesMin, CaloriesMax);
         }
     }
 }

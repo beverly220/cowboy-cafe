@@ -1,9 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CowboyCafe.Data {
     public class Menu {
+        private static IEnumerable<IOrderItem> AllMenuItems {
+            get {
+                List<IOrderItem> all = new List<IOrderItem>();
+                foreach (IOrderItem o in Entrees) {
+                    all.Add(o);
+                }
+                foreach (IOrderItem o in Sides) {
+                    all.Add(o);
+                }
+                foreach (IOrderItem o in Drinks) {
+                    all.Add(o);
+                }
+                return all;
+            }
+        }
+
         /// <summary>
         /// Gets all entrees
         /// </summary>
@@ -19,6 +36,141 @@ namespace CowboyCafe.Data {
                 entrees.Add(new TrailBurger());
                 return entrees; 
             } 
+        }
+
+        /// <summary>
+        /// Searches the database for matching food
+        /// </summary>
+        /// <param name="terms">The terms to search for</param>
+        /// <returns>A collection of movies</returns>
+        public static IEnumerable<IOrderItem> Search(string terms) {
+            List<IOrderItem> results = new List<IOrderItem>();
+            if (terms == null) return null;
+            foreach (IOrderItem entree in Entrees) {
+                if (entree.ToString().Contains(terms, StringComparison.InvariantCultureIgnoreCase)) {
+                    results.Add(entree);
+                }
+            }
+            foreach (IOrderItem side in Sides) {
+                if (side.ToString().Contains(terms, StringComparison.InvariantCultureIgnoreCase)) {
+                    results.Add(side);
+                }
+            }
+            foreach (IOrderItem drink in Drinks) {
+                if (drink.ToString().Contains(terms, StringComparison.InvariantCultureIgnoreCase)) {
+                    results.Add(drink);
+                }
+            }
+            return results;
+        }
+
+        /// <summary>
+        /// Gets the possible order types
+        /// </summary>
+        public static string[] EntreeSideDrink {
+            get => new string[]
+            {
+            "Entree",
+            "Side",
+            "Drink"
+            };
+        }
+
+        /// <summary>
+        /// Filters the provided collection of order
+        /// </summary>
+        /// <param name="items">The collection of items to filter</param>
+        /// <param name="types">The types to include</param>
+        /// <returns>A collection containing only movies that match the filter</returns>
+        public static IEnumerable<IOrderItem> FilterByType(IEnumerable<IOrderItem> items, IEnumerable<string> types) {
+            if (types == null || types.Count() == 0) return items;
+            List<IOrderItem> results = new List<IOrderItem>();
+            foreach (IOrderItem item in items) {
+                if (types.Contains("Entree") && item is Entree) {
+                    results.Add(item);
+                }
+                if (types.Contains("Side") && item is Side) {
+                    results.Add(item);
+                }
+                if (types.Contains("Drink") && item is Drink) {
+                    results.Add(item);
+                }
+            }
+            return results;
+        }
+
+        /// <summary>
+        /// Filters the provided collection of menu
+        /// items by the given maximum and minimum
+        /// calories searched
+        /// </summary>
+        /// <param name="items">The collection of ordered items
+        /// to filter</param>
+        /// <param name="min">The minimum range value</param>
+        /// <param name="max">The maximum range value</param>
+        /// <returns>The filtered menu selection</returns>
+        public static IEnumerable<IOrderItem> FilterByCalories(IEnumerable<IOrderItem> items, int? min, int? max) {
+            if (min == null && max == null) return items;
+            var results = new List<IOrderItem>();
+            if (min == null) {
+                foreach (IOrderItem item in items) {
+                    if (item.Calories <= max) {
+                        results.Add(item);
+                    }
+                }
+                return results;
+            }
+            if (max == null) {
+                foreach (IOrderItem item in items) {
+                    if (item.Calories >= min) {
+                        results.Add(item);
+                    }
+                }
+                return results;
+            }
+            foreach (IOrderItem item in items) {
+                if (item.Calories >= min && item.Calories <= max) {
+                    results.Add(item);
+                }
+            }
+            return results;
+        }
+
+        /// <summary>
+        /// Filters the provided collection of menu
+        /// items by the given maximum and minimum
+        /// price searched
+        /// </summary>
+        /// <param name="items">The collection of ordered items
+        /// to filter</param>
+        /// <param name="min">The minimum range value</param>
+        /// <param name="max">The maximum range value</param>
+        /// <returns>The filtered menu selection</returns>
+        public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> items, double? min, double? max) {
+            if (min == null && max == null) return items;
+            var results = new List<IOrderItem>();
+            if (min == null) {
+                foreach (IOrderItem item in items) {
+                    if (item.Price <= max) {
+                        results.Add(item);
+                    }
+                }
+                return results;
+            }
+            if (max == null) {
+                foreach (IOrderItem item in items) {
+                    if (item.Price >= min) {
+                        results.Add(item);
+                    }
+                }
+                return results;
+            }
+            foreach (IOrderItem item in items) {
+                if (item.Price >= min && item.Calories <= max) {
+                    results.Add(item);
+                }
+            }
+            return results;
         }
 
         /// <summary>
