@@ -45,7 +45,7 @@ namespace CowboyCafe.Data {
         /// <returns>A collection of movies</returns>
         public static IEnumerable<IOrderItem> Search(string terms) {
             List<IOrderItem> results = new List<IOrderItem>();
-            if (terms == null) return null;
+            if (terms == null) return AllMenuItems;
             foreach (IOrderItem entree in Entrees) {
                 if (entree.ToString().Contains(terms, StringComparison.InvariantCultureIgnoreCase)) {
                     results.Add(entree);

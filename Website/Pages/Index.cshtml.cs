@@ -23,6 +23,7 @@ namespace Website.Pages {
         /// <summary>
         /// The current search terms 
         /// </summary>
+        [BindProperty]
         public string SearchTerms { get; set; }
 
         /// <summary>
@@ -53,13 +54,13 @@ namespace Website.Pages {
         /// <summary>
         /// Gets the search results for display on the page
         /// </summary>
-        public void OnGet(double? PriceMin, double? PriceMax, int? CaloriesMin, int? CaloriesMax) {
+        public void OnGet(double? PriceMin, double? PriceMax, int? CaloriesMin, int? CalorieMax) {
             SearchTerms = Request.Query["SearchTerms"];
             Types = Request.Query["Types"];
             MenuItems = Menu.Search(SearchTerms);
             MenuItems = Menu.FilterByType(MenuItems, Types);
             MenuItems = Menu.FilterByPrice(MenuItems, PriceMin, PriceMax);
-            MenuItems = Menu.FilterByCalories(MenuItems, CaloriesMin, CaloriesMax);
+            MenuItems = Menu.FilterByCalories(MenuItems, CaloriesMin, CalorieMax);
         }
     }
 }

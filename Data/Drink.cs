@@ -18,7 +18,7 @@ namespace CowboyCafe.Data {
         /// <summary>
         /// Gets the calories of each drink
         /// </summary>
-        public abstract uint Calories { get; }
+        public abstract override uint Calories { get; }
 
         /// <summary>
         /// Defaults all sizes to small
