@@ -112,9 +112,9 @@ namespace CowboyCafe.Data {
         /// <param name="max">The maximum range value</param>
         /// <returns>The filtered menu selection</returns>
         public static IEnumerable<IOrderItem> FilterByCalories(IEnumerable<IOrderItem> items, int? min, int? max) {
-            if (min == null && max == null) return items;
+            if ((min == null && max == null) || (min == 0 && max == 0) || (min == 10 && max == 10)) return items;
             var results = new List<IOrderItem>();
-            if (min == null) {
+            if (min == null || min == 0) {
                 foreach (IOrderItem item in items) {
                     if (item.Calories <= max) {
                         results.Add(item);
@@ -122,7 +122,7 @@ namespace CowboyCafe.Data {
                 }
                 return results;
             }
-            if (max == null) {
+            if (max == null || max == 0) {
                 foreach (IOrderItem item in items) {
                     if (item.Calories >= min) {
                         results.Add(item);
@@ -149,9 +149,9 @@ namespace CowboyCafe.Data {
         /// <param name="max">The maximum range value</param>
         /// <returns>The filtered menu selection</returns>
         public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> items, double? min, double? max) {
-            if (min == null && max == null) return items;
+            if ((min == null && max == null) || (min == 0 && max == 0)) return items;
             var results = new List<IOrderItem>();
-            if (min == null) {
+            if (min == null || min == 0) {
                 foreach (IOrderItem item in items) {
                     if (item.Price <= max) {
                         results.Add(item);
@@ -159,7 +159,7 @@ namespace CowboyCafe.Data {
                 }
                 return results;
             }
-            if (max == null) {
+            if (max == null || max == 0) {
                 foreach (IOrderItem item in items) {
                     if (item.Price >= min) {
                         results.Add(item);
@@ -172,6 +172,7 @@ namespace CowboyCafe.Data {
                     results.Add(item);
                 }
             }
+            
             return results;
         }
 
