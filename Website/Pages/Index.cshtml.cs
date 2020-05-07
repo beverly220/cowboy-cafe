@@ -53,16 +53,49 @@ namespace Website.Pages {
         /// <summary>
         /// Gets the search results for display on the page
         /// </summary>
-        public void OnGet(double? PriceMin, double? PriceMax, int? CaloriesMin, int? CalorieMax) {
+        public void OnGet(double? PriceMin, double? PriceMax, int? CalorieMin, int? CalorieMax) {
             SearchTerms = Request.Query["SearchTerms"];
             Types = Request.Query["Types"];
-            MenuItems = Menu.Search(SearchTerms);
-            MenuItems = Menu.FilterByType(MenuItems, Types);
-            MenuItems = Menu.FilterByPrice(MenuItems, PriceMin, PriceMax);
-            MenuItems = Menu.FilterByCalories(MenuItems, CaloriesMin, CalorieMax);
+            //MenuItems = Menu.Search(SearchTerms);
+            //MenuItems = Menu.FilterByType(MenuItems, Types);
+            //MenuItems = Menu.FilterByPrice(MenuItems, PriceMin, PriceMax);
+            //MenuItems = Menu.FilterByCalories(MenuItems, CalorieMin, CalorieMax);
             //if(Menu.AllMenuItems.Count() == MenuItems.Count()) {
-              //  MenuItems = Enumerable.Empty<IOrderItem>();
+            //  MenuItems = Enumerable.Empty<IOrderItem>();
             //}
+            MenuItems = Menu.AllMenuItems;
+            if (SearchTerms != null) {
+                MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems.ToString().Contains(SearchTerms, StringComparison.InvariantCultureIgnoreCase));
+            }
+            if (Types != null && Types.Length != 0) {
+                if(Types.Contains("Side")) {
+                    MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems is Side);
+                }
+                if (Types.Contains("Entree")) {
+                    MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems is Entree);
+                }
+                if(Types.Contains("Drink")) {
+                    MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems is Drink);
+                }
+            }
+            if (PriceMin != null && PriceMax != null) {
+                MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems.Price >= PriceMin && AllMenuItems.Price <= PriceMax);
+            }
+            else if (PriceMin != null) {
+                MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems.Price >= PriceMin);
+            }
+            else if (PriceMax != null) {
+                MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems.Price <= PriceMax);
+            }
+            if (CalorieMin != null && CalorieMax != null) {
+                MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems.Calories >= CalorieMin && AllMenuItems.Calories <= CalorieMax);
+            }
+            else if (CalorieMin != null) {
+                MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems.Calories >= CalorieMin);
+            }
+            else if (CalorieMax != null) {
+                MenuItems = MenuItems.Where(AllMenuItems => AllMenuItems.Calories <= CalorieMax);
+            }
         }
     }
 }
