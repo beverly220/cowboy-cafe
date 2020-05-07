@@ -255,6 +255,34 @@ namespace CowboyCafe.Data {
                 lJS.Flavor = SodaFlavor.BirchBeer;
                 drinks.Add(lJS);
 
+                sJS.Flavor = SodaFlavor.RootBeer;
+                drinks.Add(sJS);
+                mJS.Flavor = SodaFlavor.RootBeer;
+                drinks.Add(mJS);
+                lJS.Flavor = SodaFlavor.RootBeer;
+                drinks.Add(lJS);
+
+                sJS.Flavor = SodaFlavor.CreamSoda;
+                drinks.Add(sJS);
+                mJS.Flavor = SodaFlavor.CreamSoda;
+                drinks.Add(mJS);
+                lJS.Flavor = SodaFlavor.CreamSoda;
+                drinks.Add(lJS);
+
+                sJS.Flavor = SodaFlavor.OrangeSoda;
+                drinks.Add(sJS);
+                mJS.Flavor = SodaFlavor.OrangeSoda;
+                drinks.Add(mJS);
+                lJS.Flavor = SodaFlavor.OrangeSoda;
+                drinks.Add(lJS);
+
+                sJS.Flavor = SodaFlavor.Sarsparilla;
+                drinks.Add(sJS);
+                mJS.Flavor = SodaFlavor.Sarsparilla;
+                drinks.Add(mJS);
+                lJS.Flavor = SodaFlavor.Sarsparilla;
+                drinks.Add(lJS);
+
                 TexasTea sTT = new TexasTea();
                 sTT.Size = Size.Small;
                 drinks.Add(sTT);
